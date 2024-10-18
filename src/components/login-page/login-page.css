@@ -1,0 +1,195 @@
+.flex-2-cols {
+    display: flex;
+    height: 100vh;
+}
+
+.flex-row-sb {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-2-cols div:first-child {
+    flex: 1 1 500px;
+}
+
+.flex-2-cols div:last-child {
+    flex: 2 2 500px;
+}
+
+.f-right {
+    float: right;
+}
+
+.login-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 48px;
+}
+
+.login-header .logo {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #3751FE;
+}
+
+.login-header nav {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+
+.login-header nav a {
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: #5E5E5E;
+}
+
+.login-header nav a.active {
+    border-bottom: 3px solid #0C31F1;
+}
+
+.login-container {
+
+}
+
+.login-container .content-container {
+    margin: 100px 48px 0;
+    max-width: 500px;
+}
+
+.login-container .content-container h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: #3751FE;
+    text-transform: capitalize;
+}
+
+.login-container .content-container h1 + p {
+    color: #00000060;
+    margin: 36px 0 48px;
+}
+
+.input-wrapper {
+    padding: 2px 24px;
+    border: 1px solid #C1BBBB;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.input-wrapper:focus-within {
+    border-left: 3px solid #0C31F1;
+}
+
+.input-wrapper input {
+    outline: none;
+    border: none;
+    display: block;
+    line-height: 1.2em;
+    font-size: 14pt;
+    width: 100%;
+    color: #3751FE;
+    font-weight: 600;
+}
+
+.input-wrapper label {
+    display: block;
+    color: #6C6C6C;
+}
+
+form .error {
+    color: #ff3737;
+    font-size: 0.8rem;
+    margin-left: 24px;
+    margin-bottom: 4px;
+}
+
+form .error:first-child {
+    margin-top: 24px;
+}
+
+form .error:last-child {
+    margin-bottom: 0;
+}
+
+form .additional-fields {
+    margin: 24px 0 56px;
+    padding-left: 24px;
+    color: #00000060;
+}
+
+form .additional-fields input[type="checkbox"] {
+    border-color: #0C31F1;
+}
+
+form .additional-fields .p-btn {
+    text-decoration: none;
+    color: #00000060;
+    cursor: pointer;
+}
+
+.form-btn {
+    border: 1px solid #3751FE;
+    padding: 10px 24px;
+    margin-right: 36px;
+    cursor: pointer;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.form-btn:last-child {
+    margin-right: 0;
+}
+
+.form-btn.login-btn {
+    color: #FFFFFF;
+    background-color: #3751FE;
+}
+
+.form-btn.login-btn:hover {
+    color: #3751FE;
+    background-color: #FFFFFF;
+}
+
+.form-btn.signup-btn {
+    color: #3751FE;
+    background-color: #FFFFFF;
+}
+
+.form-btn.signup-btn:hover {
+    color: #FFFFFF;
+    background-color: #3751FE;
+}
+
+.main-container {
+    background: #e5e5e566 url("../../assets/bicycle.png") no-repeat center;
+}
+
+@media only screen and (max-width: 1000px) {
+    .login-container .content-container {
+        margin: 100px auto 0;
+    }
+
+    .main-container {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .login-header {
+        width: 80%;
+        margin: 0 auto;
+        padding: 12px 0;
+    }
+
+    .login-header nav {
+        display: none;
+    }
+
+    .login-container .content-container {
+        max-width: 80%;
+    }
+}
