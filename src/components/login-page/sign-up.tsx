@@ -1,7 +1,7 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {signUp} from "../../requests/requests.ts";
 
-export function SignUp({toggleForm}) {
+export function SignUp({toggleForm}: {toggleForm: (formType: string) => void}) {
     const [form, setForm] = useState({email: '', password: '', repeatPassword: ''});
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -11,7 +11,7 @@ export function SignUp({toggleForm}) {
         return (!emailError && !passwordError && !repeatPasswordError) && (form.email && form.password && form.repeatPassword);
     }
 
-    const handleFormInputChange = (e) => {
+    const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name;
         const value = e.target.value;
         setForm({...form, [name]: value});
@@ -40,8 +40,8 @@ export function SignUp({toggleForm}) {
         }
     }
 
-    const handleSignUp = async (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
+    const handleSignUp = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
         if (isFormValid()) {
             try {
                 const response = await signUp(form);
@@ -52,7 +52,7 @@ export function SignUp({toggleForm}) {
         }
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         toggleForm('login');
     }
@@ -83,7 +83,7 @@ export function SignUp({toggleForm}) {
                     </div>
                 )}
                 <div className="additional-fields">
-                    <p className="p-btn f-right" onClick={handleLogin}>Back to Login page</p>
+                    <button className="text-btn f-right" onClick={handleLogin}>Back to Login page</button>
                 </div>
                 <div>
                     <button className="form-btn signup-btn f-right" onClick={handleSignUp}>Sign Up</button>

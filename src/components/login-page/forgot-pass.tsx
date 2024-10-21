@@ -1,7 +1,7 @@
-import {useState} from "react";
+import React, {useState} from "react";
 import {forgotPass} from "../../requests/requests.ts";
 
-export function ForgotPass({toggleForm}) {
+export function ForgotPass({toggleForm}: {toggleForm: (formType: string) => void}) {
     const [form, setForm] = useState({email: ''});
     const [emailError, setEmailError] = useState('');
 
@@ -9,7 +9,7 @@ export function ForgotPass({toggleForm}) {
         return (!emailError && form.email);
     }
 
-    const handleFormInputChange = (e) => {
+    const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name;
         const value = e.target.value;
         setForm({...form, [name]: value});
@@ -22,8 +22,8 @@ export function ForgotPass({toggleForm}) {
         }
     }
 
-    const handleForgotPass = async (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
+    const handleForgotPass = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
         if (isFormValid()) {
             try {
                 const response = await forgotPass(form);
@@ -34,7 +34,7 @@ export function ForgotPass({toggleForm}) {
         }
     }
 
-    const handleLogin = (e) => {
+    const handleLogin = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         toggleForm('login');
     }
@@ -53,7 +53,7 @@ export function ForgotPass({toggleForm}) {
                     </div>
                 )}
                 <div className="additional-fields">
-                    <p className="p-btn f-right" onClick={handleLogin}>Back to Login page</p>
+                    <button className="text-btn f-right" onClick={handleLogin}>Back to Login page</button>
                 </div>
                 <div>
                     <button className="form-btn signup-btn f-right" onClick={handleForgotPass}>Reset Password</button>

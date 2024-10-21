@@ -9,7 +9,7 @@ export function LoginPage() {
     const [isSignUp, setIsSignUp] = useState(false);
     const [isForgotPass, setIsForgotPass] = useState(false);
 
-    const toggleForm = (formType: string) => {
+    const toggleForm = (formType: string): void => {
         switch (formType) {
             case 'login':
                 setIsLogin(true);

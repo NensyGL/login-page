@@ -123,10 +123,12 @@ form .additional-fields {
 
 form .additional-fields input[type="checkbox"] {
     border-color: #0C31F1;
+    margin-right: 4px;
 }
 
-form .additional-fields .p-btn {
-    text-decoration: none;
+form .additional-fields .text-btn {
+    background: none;
+    border: none;
     color: #00000060;
     cursor: pointer;
 }

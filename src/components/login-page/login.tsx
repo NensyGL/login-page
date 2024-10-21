@@ -1,8 +1,8 @@
 import './login-page.css';
-import {useState} from "react";
+import React, {useState} from "react";
 import {login} from '../../requests/requests.ts';
 
-export function Login({toggleForm}) {
+export function Login({toggleForm}: {toggleForm: (formType: string) => void}) {
     const [loginForm, setLoginForm] = useState({email: '', password: '', rememberUser: false});
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
@@ -11,7 +11,7 @@ export function Login({toggleForm}) {
         return (!emailError && !passwordError) && (loginForm.email && loginForm.password);
     }
 
-    const handleFormInputChange = (e) => {
+    const handleFormInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const name = e.target.name;
         let value;
         if (name === 'rememberUser') {
@@ -22,14 +22,14 @@ export function Login({toggleForm}) {
         setLoginForm({...loginForm, [name]: value});
         switch (name) {
             case 'email':
-                if (!/\S+@\S+\.\S+/.test(value)) {
+                if (!/\S+@\S+\.\S+/.test(value.toString())) {
                     setEmailError('Email is invalid');
                 } else {
                     setEmailError('');
                 }
                 break;
             case 'password':
-                if (value.length < 8 || value.length > 16) {
+                if (value.toString().length < 8 || value.toString().length > 16) {
                     setPasswordError('Password must be 8 to 16 symbols');
                 } else {
                     setPasswordError('');
@@ -38,8 +38,8 @@ export function Login({toggleForm}) {
         }
     }
 
-    const handleLogin = async (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
+    const handleLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
         if (isFormValid()) {
             try {
                 const response = await login(loginForm);
@@ -54,7 +54,7 @@ export function Login({toggleForm}) {
         toggleForm('forgot-pass');
     }
 
-    const handleSignUp = (e) => {
+    const handleSignUp = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         toggleForm('sign-up');
     }
@@ -65,12 +65,23 @@ export function Login({toggleForm}) {
             <form>
                 <div className="input-wrapper active">
                     <label htmlFor="email">Email Address</label>
-                    <input type="email" id="email" name="email" onChange={handleFormInputChange}/>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        autoComplete="username"
+                        onBlur={handleFormInputChange}
+                    />
                 </div>
                 <div className="input-wrapper">
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" name="password"
-                           onChange={handleFormInputChange}/>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autoComplete="current-password"
+                        onBlur={handleFormInputChange}
+                    />
                 </div>
                 {(emailError || passwordError) && (
                     <div>
@@ -84,7 +95,7 @@ export function Login({toggleForm}) {
                                onChange={handleFormInputChange}/>
                         Remember me
                     </label>
-                    <p className="p-btn" onClick={handleForgotPassword}>Forgot Password?</p>
+                    <button className="text-btn" onClick={handleForgotPassword}>Forgot Password?</button>
                 </div>
 
                 <div>
